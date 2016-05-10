@@ -161,7 +161,7 @@ class CoursesController < ApplicationController
       redirect_to(courses_path) && return
     end
 
-    course = Course.find(params[:id])
+    course = Course.find_by_name(params[:name])
     if course.nil?
       flash[:error] = "Course doesn't exist."
       redirect_to(courses_path) && return
