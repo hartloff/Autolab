@@ -8,8 +8,11 @@
 *******************************************/
 
 $autolab-red: rgba(153, 0, 0, 0.9);
-$autolab-subtle-gray: #eee;
+$autolab-subtle-gray: #fff;
 $autolab-highlight-gray: #ccc;
+
+$ub-blue: rgba(0, 91, 187, 1);
+$ub-white: rgba(255, 255, 255, 1);
 
 html, body {
   height: 100%;
@@ -35,9 +38,9 @@ html, body {
 /* Navbar Styling */
 
 div.main-header {
-  background-color: rgba(153, 0, 0, 0.9);
+  background-color: $ub-blue;
   width: 100%;
-  border-bottom: 1px solid rgba(133, 0, 0, 0.9);
+  border-bottom: 1px solid $ub-blue;
 }
 
 div.main-header .logo {
@@ -95,7 +98,7 @@ div.main-header img {
   line-height: 14px;
   border-radius: 18px;
   font-weight: normal;
-  color: rgba(153, 0, 0, 0.9);
+  color: $ub-blue;
   border: 2px solid #fff;
 }
 
@@ -118,7 +121,7 @@ div.main-header img {
 }
 
 .action-links.navbar-nav li.dropdown a:hover {
-  color: rgba(153, 0, 0, 0.9);
+  color: $ub-blue;
 }
 
 .action-links .dropdown-menu .divider {
@@ -643,7 +646,7 @@ div.card .btn.main {
 }
 
 div.card .btn.main:hover {
-  background-color: rgba(153, 0, 0, 0.9)
+  background-color: $ub-blue;
 }
 
 @media (max-width: 768px) {
@@ -708,7 +711,7 @@ input[type="password"]:read-only {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border: 1px solid rgba(133, 0, 0, 1);
+  border: 1px solid $ub-blue;
   outline: none;
 }
 
@@ -785,7 +788,7 @@ label.control-label {
 }
 
 .autolab .btn.primary {
-  background-color: rgba(153,0,0,0.9);
+  background-color: $ub-blue;
 }
 
 .autolab .btn.small {

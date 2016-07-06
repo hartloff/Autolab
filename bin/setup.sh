@@ -238,9 +238,9 @@ Top things to do after installation:
 ## out certain steps to skip them.
 #########################################################
 
-environment_setup
-rbenv_setup
-ruby_setup
+#environment_setup
+#rbenv_setup
+#ruby_setup
 db_setup
 rails_setup
 autolab_setup
