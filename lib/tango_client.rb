@@ -8,8 +8,7 @@ module TangoClient
   # Httparty client for Tango API
   class ClientObj
     include HTTParty
-    #base_uri "#{RESTFUL_HOST}:#{RESTFUL_PORT}"
-    base_uri "0.0.0.0:3001"
+	base_uri "#{RESTFUL_HOST}:#{RESTFUL_PORT}"
 	default_timeout 30
   end
 
@@ -25,7 +24,7 @@ module TangoClient
   rescue Net::OpenTimeout, Net::ReadTimeout
     raise TangoException, "Connection timed out with Tango."
   rescue StandardError => e
-    raise TangoException, "Unexpected error with Tango (#{e})."
+    raise TangoException, "Unexpected error with Tango on address (#{Rails.root}) (#{RESTFUL_HOST}) on port (#{RESTFUL_PORT}) with key (#{api_key}) with error  (#{e})."
   end
 
   def self.open(courselab)
