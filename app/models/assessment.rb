@@ -6,6 +6,9 @@ class Assessment < ActiveRecord::Base
   # Mass-assignment
   # attr_protected :name
 
+  mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
+  validates :name, presence: true # Make sure the owner's name is present. 
+
   # Associations
   belongs_to :course
   belongs_to :course_user_datum
@@ -102,7 +105,10 @@ class Assessment < ActiveRecord::Base
   def writeup_path
     path writeup
   end
-
+	
+  def is_due?
+	end_at < Time.now
+  end
   def released?(as_of = Time.now)
     start_at < as_of
   end

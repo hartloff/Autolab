@@ -14,8 +14,14 @@ class Autograder < ActiveRecord::Base
 
   after_save -> { assessment.dump_yaml }
 
+  mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
+  validates :name, presence: true # Make sure the owner's name is present.
+
+  #has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+
   SERIALIZABLE = Set.new %w(autograde_image autograde_timeout release_score)
   def serialize
     Utilities.serializable attributes, SERIALIZABLE
   end
 end
+

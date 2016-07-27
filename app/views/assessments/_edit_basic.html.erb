@@ -23,7 +23,7 @@
     <%= link_to "Edit Autograder Settings", [:edit, @course, @assessment, :autograder], class: "btn primary" %>
     <%= link_to "Delete Autograder", [@course, @assessment, :autograder], method: :delete, class: "btn danger",
                 data: {confirm: "Are you sure you want to delete the Autograder for this assessment?"} %>  
-	<% else %>
+   <% else %>
     <%= link_to "Add Autograder", [@course, @assessment, :autograder], method: :post, class: "btn primary" %>
   <% end %>
 </div>
@@ -37,6 +37,7 @@
     <%= link_to "Add Scoreboard", [@course, @assessment, :scoreboard], method: :post, class: "btn primary" %>
   <% end %>
 </div>
+
 
 <span class="checkbox"><%= f.check_box :has_svn,
   display_name: "Use SVN?",

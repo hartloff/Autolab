@@ -18,18 +18,18 @@
 <% @list.delete("reload") %>
 
 <div class="row">
-  <div class="col-md-12"> 
+  <div class="col-md-12">
     <h2><%= @assessment.display_name %></h2>
     <hr>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4"> 
+  <div class="col-md-4">
     <%# Display any optional instructor admin options %>
     <% if @cud.instructor? then %>
       <h3>Admin Options</h3>
       <ul class="options">
-    
+
         <li> <%= link_to "Edit assessment", {:action => "edit" }, {:title=> "View and modify the properties for this assessment, including its problems" } %></li>
         <li> <%= link_to "Grade submissions", {:action => "viewGradesheet" }, {:title=> "View and enter grades on the gradesheet" } %></li>
         <li> <%= link_to "Release all grades", {:action => "releaseAllGrades" }, {:title=>  "Make all scores for this assessment visible to students" } %></li>
@@ -57,20 +57,22 @@
         <% if @assessment.has_scoreboard? %>
           <li><%= link_to "Scoreboard settings", [:edit, @course, @assessment, :scoreboard], title: "Configure the appearance of the scoreboard" %></li>
         <% end %>
-
+		<% if !@assessment.has_autograder? and @assessment.is_due? then %>
+				   <li><%= link_to "Assign CAs", {:action => "assignCA" }, {:title=> "Assign CAs for manual grading"} %></li>
+		<% end %>
       </ul>
     <% end %>
     <%# Display the optional CA admin options %>
     <% if @cud.course_assistant? or @cud.instructor? then %>
         <h3>Admin Options (CA)</h3>
         <ul class="options">
-          <li><%= link_to "Grade section #{@cud.section} submissions", url_for(:action => 'viewGradesheet', :section => '1', :escape => false), 
+          <li><%= link_to "Grade section #{@cud.section} submissions", url_for(:action => 'viewGradesheet', :section => '1', :escape => false),
             :title=> "View and enter grades for your section. Make sure your instructor has assigned you to a section in your Autolab account" %></li>
-          <li><%= link_to "Grade all submissions", url_for(:action => 'viewGradesheet'), 
+          <li><%= link_to "Grade all submissions", url_for(:action => 'viewGradesheet'),
             :title=> "View and enter grades for all sections"  %></li>
-          <li><%= link_to "Release section grades", url_for(:action => 'releaseSectionGrades'), 
+          <li><%= link_to "Release section grades", url_for(:action => 'releaseSectionGrades'),
             :title=> "Make all scores visible to the students in your section. This will work only if your instructor has assigned you to a lecture and section in your Autolab account." %></li>
-          <li><%= link_to "Reload config file", url_for(:action => 'reload'), 
+          <li><%= link_to "Reload config file", url_for(:action => 'reload'),
             :title=> "Reload the assessment configuration file (provided for backward compatibility with legacy assessments)" %></li>
 
           <% if !@assessment.disable_handins %>
@@ -132,7 +134,7 @@
     <% else %>
       <% numSubmissions = @assessment.max_submissions - numSubmissions %>
     <% end %>
-    <i>You have <%= numSubmissions %> <%= (numSubmissions == 1) ? "submission" : "submissions" %> left.</i> 
+    <i>You have <%= numSubmissions %> <%= (numSubmissions == 1) ? "submission" : "submissions" %> left.</i>
   <% end %>
 
   <%# Display any attachments %>
@@ -186,8 +188,8 @@
       No Submissions yet!
     <% else %>
       <% for submission in @submissions.first(limit=3) do %>
-        <%= render partial: "submission_summary_row", 
-          locals: { submission: submission, 
+        <%= render partial: "submission_summary_row",
+          locals: { submission: submission,
           download_access: download_access } %>
       <% end %>
       <hr>

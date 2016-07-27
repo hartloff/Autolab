@@ -10,13 +10,15 @@
   <%= f.check_box :release_score, display_name: "Release Scores?",
     help_text: "Check to release autograded scores to students immediately after autograding (strongly recommended)." %>
 
-  <div class="form-group">
-	<%= link_to "Upload autograde.tar", [@course, @assessment, :autograder], class: "btn primary" %>
-	<%= link_to "Upload autograde-Makefile", [@course, @assessment, :autograder], class: "btn primary" %>	
+  <div class="makefile">
+    <%= link_to "Upload Makefile", myController_path, { class: "btn primary" } %>
+	<%= link_to "Upload Other", myController_path, { class: "btn primary" } %>
+	<hr>
   </div>
-  
+
   <%= f.submit "Save Settings", { class: "btn primary" } %>
-  
   <%= link_to "Delete Autograder", [@course, @assessment, :autograder], method: :delete, class: "btn danger",
               data: {confirm: "Are you sure you want to delete the Autograder for this assesssment?"} %>
 <% end %>
+
+

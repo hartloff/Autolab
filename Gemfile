@@ -106,3 +106,10 @@ gem 'prawn', '0.13.0'
 
 # LDAP Lookup
 gem 'net-ldap'
+
+# Uploader
+gem 'carrierwave', '~> 0.9'
+gem 'bootstrap-sass', '~> 2.3.2'
+gem 'paperclip', '~> 4.2'
+
+
