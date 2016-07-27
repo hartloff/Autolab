@@ -22,8 +22,13 @@
   <% if @assessment.has_autograder? %>
     <%= link_to "Edit Autograder Settings", [:edit, @course, @assessment, :autograder], class: "btn primary" %>
     <%= link_to "Delete Autograder", [@course, @assessment, :autograder], method: :delete, class: "btn danger",
+<<<<<<< HEAD
                 data: {confirm: "Are you sure you want to delete the Autograder for this assessment?"} %>  
    <% else %>
+=======
+                data: {confirm: "Are you sure you want to delete the Autograder for this assessment?"} %>
+  <% else %>
+>>>>>>> parent of c579078... Added buttons for Autograder to upload .tar and makefile
     <%= link_to "Add Autograder", [@course, @assessment, :autograder], method: :post, class: "btn primary" %>
   <% end %>
 </div>
