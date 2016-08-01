@@ -102,6 +102,10 @@ class Assessment < ActiveRecord::Base
   def writeup_path
     path writeup
   end
+  
+  def is_due?
+      end_at < Time.now
+  end
 
   def released?(as_of = Time.now)
     start_at < as_of

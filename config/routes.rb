@@ -87,6 +87,7 @@ Autolab3::Application.routes.draw do
         post "handin"
         get "history"
         get "viewGradesheet"
+        get "assignCA"
         get "writeup"
         get "handout"
 

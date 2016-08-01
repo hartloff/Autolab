@@ -10,6 +10,10 @@
   <%= f.check_box :release_score, display_name: "Release Scores?",
     help_text: "Check to release autograded scores to students immediately after autograding (strongly recommended)." %>
 
+  <%= form_tag({action: :upload}, multipart: true) do %>
+    <%= file_field_tag 'picture' %>
+  <% end %>
+
   <%= f.submit "Save Settings", { class: "btn primary" } %>
   
   <%= link_to "Delete Autograder", [@course, @assessment, :autograder], method: :delete, class: "btn danger",

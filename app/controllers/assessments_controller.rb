@@ -498,6 +498,13 @@ class AssessmentsController < ApplicationController
     flash[:success] = "Success: Assessment config file reloaded!"
     redirect_to(action: :show) && return
   end
+                     
+  action_auth_level :assignCA, :instructor
+  def assignCA
+    flash[:success] = "Dummy message!"
+    redirect_to(action: :viewGradesheet)
+  end
+                     
 
   action_auth_level :edit, :instructor
   def edit
