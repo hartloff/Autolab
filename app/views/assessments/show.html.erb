@@ -57,9 +57,11 @@
         <% if @assessment.has_scoreboard? %>
           <li><%= link_to "Scoreboard settings", [:edit, @course, @assessment, :scoreboard], title: "Configure the appearance of the scoreboard" %></li>
         <% end %>
-		<% if !@assessment.has_autograder? and @assessment.is_due? then %>
-				   <li><%= link_to "Assign CAs", {:action => "assignCA" }, {:title=> "Assign CAs for manual grading"} %></li>
-		<% end %>
+
+        <% if !@assessment.has_autograder? and @assessment.is_due? then %>
+            <li><%= link_to "Assign CAs", {:action => "assignCA"}, {:title=> "Assign CAs for manual grading"} %></li>
+        <% end %>
+
       </ul>
     <% end %>
     <%# Display the optional CA admin options %>

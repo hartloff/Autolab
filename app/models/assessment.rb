@@ -109,6 +109,7 @@ class Assessment < ActiveRecord::Base
   def is_due?
 	end_at < Time.now
   end
+
   def released?(as_of = Time.now)
     start_at < as_of
   end
