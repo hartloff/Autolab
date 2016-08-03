@@ -106,3 +106,7 @@ gem 'prawn', '0.13.0'
 
 # LDAP Lookup
 gem 'net-ldap'
+
+# Uploads
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.3'

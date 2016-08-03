@@ -55,7 +55,7 @@
 
 <p>
 <table class="prettyBorder" id="submissions">
-  <% headers = ["Submitted By", "Version", "Submission Date (YYYY-MM-DD)", "File", "IP Address", "Actions", "isLatest"] %>
+  <% headers = ["Submitted By", "Version", "Submission Date (YYYY-MM-DD)", "File", "IP Address", "Grader", "Actions", "isLatest"] %>
   <thead>
     <tr>
       <th><input type="checkbox" id="selectall"/></th>
@@ -87,6 +87,9 @@
       </td>
       <td>
         <%= submission.submitter_ip %>
+      </td>
+      <td>
+        <%= submission.grader %>
       </td>
       <td><% if @autograded and submission.version > 0 then %>
             <%= link_to "Regrade",

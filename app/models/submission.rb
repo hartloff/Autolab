@@ -92,7 +92,6 @@ class Submission < ActiveRecord::Base
     end
 
     self.filename = filename
-
     if upload["file"]
       self.mime_type = upload["file"].content_type
       self.mime_type = "text/plain" unless mime_type
@@ -101,10 +100,18 @@ class Submission < ActiveRecord::Base
     elsif upload["tar"]
       self.mime_type = "application/x-tgz"
     end
-
+    if assessment.has_autograder?
+        self.grader = "Autolab"
+    else
+        self.grader = "Not assigned"
+    end
     self.save!
   end
 
+  def set_grader(grader)
+    self.grader = grader
+    self.save!
+  end
   def archive_handin
     return if assessment.disable_handins
     return if filename.nil?

@@ -501,7 +501,13 @@ class AssessmentsController < ApplicationController
                      
   action_auth_level :assignCA, :instructor
   def assignCA
-    flash[:success] = "Dummy message!"
+    count = 0
+    myArray = ["Dave", "Adhish", "Jesse", "Mike"]
+    for submission in @assessment.submissions do
+        count = count + 1
+        submission.set_grader(myArray.sample)
+    end
+    flash[:success] = "Dummy message! #{count}"
     redirect_to(action: :viewGradesheet)
   end
                      

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825212603) do
+ActiveRecord::Schema.define(version: 20160803154203) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer  "submission_id", limit: 4
@@ -122,18 +122,19 @@ ActiveRecord::Schema.define(version: 20150825212603) do
   end
 
   create_table "course_user_data", force: :cascade do |t|
-    t.string   "lecture",          limit: 255
-    t.string   "section",          limit: 255, default: ""
-    t.string   "grade_policy",     limit: 255, default: ""
-    t.integer  "course_id",        limit: 4,                   null: false
+    t.string   "lecture",             limit: 255
+    t.string   "section",             limit: 255,   default: ""
+    t.string   "grade_policy",        limit: 255,   default: ""
+    t.integer  "course_id",           limit: 4,                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "instructor",       limit: 1,   default: false
-    t.boolean  "dropped",          limit: 1,   default: false
-    t.string   "nickname",         limit: 255
-    t.boolean  "course_assistant", limit: 1,   default: false
-    t.integer  "tweak_id",         limit: 4
-    t.integer  "user_id",          limit: 4,                   null: false
+    t.boolean  "instructor",          limit: 1,     default: false
+    t.boolean  "dropped",             limit: 1,     default: false
+    t.string   "nickname",            limit: 255
+    t.boolean  "course_assistant",    limit: 1,     default: false
+    t.integer  "tweak_id",            limit: 4
+    t.integer  "user_id",             limit: 4,                     null: false
+    t.text     "conflictingstudents", limit: 65535
   end
 
   create_table "courses", force: :cascade do |t|
@@ -176,6 +177,21 @@ ActiveRecord::Schema.define(version: 20150825212603) do
     t.integer "user_module_id", limit: 4
     t.string  "name",           limit: 255
     t.string  "data_type",      limit: 255
+  end
+
+  create_table "my_controllers", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "attachement", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "pets", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.string   "image",       limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "problems", force: :cascade do |t|
@@ -240,6 +256,7 @@ ActiveRecord::Schema.define(version: 20150825212603) do
     t.integer  "tweak_id",             limit: 4
     t.boolean  "ignored",              limit: 1,     default: false, null: false
     t.string   "dave",                 limit: 255
+    t.string   "grader",               limit: 255
   end
 
   add_index "submissions", ["assessment_id"], name: "index_submissions_on_assessment_id", using: :btree
@@ -268,6 +285,7 @@ ActiveRecord::Schema.define(version: 20150825212603) do
     t.string   "school",                 limit: 255
     t.string   "major",                  limit: 255
     t.string   "year",                   limit: 255
+    t.string   "avatar",                 limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

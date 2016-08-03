@@ -1,4 +1,5 @@
 Autolab3::Application.routes.draw do
+  resources :pets
   root "courses#index"
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks",
@@ -14,6 +15,10 @@ Autolab3::Application.routes.draw do
     get "error"
     get "no_user"
   end
+  
+  resource :upload do
+	  get "index"
+	end
 
   resource :admin do
     match "email_instructors", via: [:get, :post]
@@ -154,3 +159,4 @@ Autolab3::Application.routes.draw do
     end
   end
 end
+
