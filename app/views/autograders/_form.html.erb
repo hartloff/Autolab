@@ -1,4 +1,6 @@
-<%= form_for [@course, @assessment, @autograder], builder: FormBuilderWithDateTimeInput do |f| %>
+<%= form_for [@course, @assessment, @autograder], 
+	builder: FormBuilderWithDateTimeInput, 
+	html: { multipart: true } do |f| %>
   <%= f.error_messages %>
 
   <%= f.text_field :autograde_image, display_name: "VM Image" %>
@@ -11,8 +13,8 @@
     help_text: "Check to release autograded scores to students immediately after autograding (strongly recommended)." %>
 
   <div>
-	  <%= f.file_field :"Autograde Makefile" %>
-	  <%= f.file_field :"Autograde Tarball" %>
+	  <%= f.file_field :"Autograde Makefile", action: :upload_my_file %>
+	  <%= f.file_field :"Autograde Tarball", action: :upload_my_file %>
 	  <hr>
   </div>
 
