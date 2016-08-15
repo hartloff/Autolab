@@ -4,5 +4,6 @@ class AddHasAutogradeKeyToAssessment < ActiveRecord::Migration
     add_column :assessments, :has_partners, :boolean
     add_column :assessments, :has_scoreboard, :boolean
     add_column :assessments, :has_svn, :boolean
+		add_column :assessments, :has_lang, :boolean
   end
 end

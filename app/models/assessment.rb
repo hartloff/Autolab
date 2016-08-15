@@ -383,7 +383,7 @@ private
     s
   end
 
-  GENERAL_SERIALIZABLE = Set.new %w(name display_name category_name description handin_filename handin_directory has_svn max_grace_days handout writeup max_submissions disable_handins max_size version_threshold)
+  GENERAL_SERIALIZABLE = Set.new %w(name display_name category_name description handin_filename handin_directory has_svn has_lang max_grace_days handout writeup max_submissions disable_handins max_size version_threshold)
 
   def serialize_general
     Utilities.serializable attributes, GENERAL_SERIALIZABLE
