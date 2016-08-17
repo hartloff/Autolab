@@ -23,10 +23,9 @@
           <p><%= f.submit("Submit File Late", id:"fake-submit",  class: "btn primary") %></p>
         <% else %>
           <p><%= f.submit("Submit File", id:"fake-submit", class: "btn primary") %></p>
-        <% end %>
+				<% end %>
       <% end %>
     <% end %>
-	  
   <% else %>
     <% case @why_not
        when :user_dropped %>
@@ -40,6 +39,7 @@
 
     <% when :at_submission_limit %>
       <h3>You have reached the maximum number of submissions allowed for this assessment.</h3>
+
 
     <% else %>
       <h3>You are not allowed to submit this assessment.</h3>

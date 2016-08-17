@@ -180,7 +180,10 @@ module AssessmentAutograde
   ##
   # sends an upload request for every file that needs to be uploaded.
   # returns a list of files uploaded on success and a negative number on failure
-  #
+  # 
+	# This is where we need to add the ability to tap the db to grab the language 
+	# info. Then send it to tango with the rest of the assignment
+	#
   def tango_upload(course, assessment, submission, existing_files)
     # first, figure out which files need to get sent
     ass_dir = assessment.folder_path
@@ -199,6 +202,14 @@ module AssessmentAutograde
       e.backtrace.each { |line| COURSE_LOGGER.log(line) }
       return -3, nil
     end
+
+		# extra info in the form of a json for tango
+		#json = '#{submission.info}'
+		#file_name = '#{submission.user}'+'_config.json'
+
+		#f = File.new("#{file_name}", "r")
+		#f.write("#{json}")
+		#f.close
 
     # now actually send all of the upload requests
     upload_file_list.each do |f|
