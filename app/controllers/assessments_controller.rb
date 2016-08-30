@@ -507,8 +507,8 @@ class AssessmentsController < ApplicationController
         count = count + 1
         submission.set_grader(myArray.sample)
     end
-    flash[:success] = "Dummy message! #{count}"
-    redirect_to(action: :viewGradesheet)
+    flash[:success] = "#{count} submissions assigned"
+    redirect_to([@course, @assessment, :submissions])
   end
                      
 

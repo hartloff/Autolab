@@ -36,14 +36,18 @@ class AutogradersController < ApplicationController
   end
 
   def upload_my_file
-      uploaded_tar = params[:autograder][:"Autograde Tarball"]
+    uploaded_tar = params[:autograder][:"Autograde Tarball"]
 	  uploaded_makefile = params[:autograder][:"Autograde Makefile"]
-	  File.open(Rails.root.join('courses', @course.name, @assessment.name, 'autograde-Makefile'), 'wb') do |file|
-		  file.write(uploaded_makefile.read) unless uploaded_makefile.nil?
-	  end
-	  File.open(Rails.root.join('courses', @course.name, @assessment.name, 'autograder.tar'), 'wb') do |file|
+	  if not uploaded_makefile.nil?
+			File.open(Rails.root.join('courses', @course.name, @assessment.name, 'autograde-Makefile'), 'wb') do |file|
+				file.write(uploaded_makefile.read) unless uploaded_makefile.nil?
+		  end
+		end
+		if not uploaded_tar.nil?
+			File.open(Rails.root.join('courses', @course.name, @assessment.name, 'autograder.tar'), 'wb') do |file|
 		  file.write(uploaded_tar.read) unless uploaded_tar.nil?
-	  end
+			end
+		end
 
   end
 

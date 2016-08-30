@@ -86,6 +86,14 @@ class Assessment < ActiveRecord::Base
   def before_grading_deadline?
     Time.now <= grading_deadline
   end
+  
+  def getLanguages
+      return self.languages.split(/\s*,\s*/)
+  end
+  
+  def getTextfields
+      return self.textfields.split(/\s*,\s*/)
+  end
 
   def folder_path
     Rails.root.join("courses", course.name, name)
