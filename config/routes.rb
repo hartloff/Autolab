@@ -93,6 +93,7 @@ Autolab3::Application.routes.draw do
         get "history"
         get "viewGradesheet"
         get "assignCA"
+        get "unassignCA"
         get "writeup"
         get "handout"
 

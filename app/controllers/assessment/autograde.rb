@@ -188,7 +188,7 @@ module AssessmentAutograde
     # first, figure out which files need to get sent
     ass_dir = assessment.folder_path
     begin
-      COURSE_LOGGER.log("Dir: #{ass_dir}")
+      COURSE_LOGGER.log("HulloDir: #{ass_dir}")
 
       if assessment.overwrites_method?(:autogradeInputFiles)
         upload_file_list = assessment.config_module.autogradeInputFiles(ass_dir)
@@ -203,15 +203,7 @@ module AssessmentAutograde
       return -3, nil
     end
 
-		# extra info in the form of a json for tango
-		#json = '#{submission.info}'
-		#file_name = '#{submission.user}'+'_config.json'
-
-		#f = File.new("#{file_name}", "r")
-		#f.write("#{json}")
-		#f.close
-
-    # now actually send all of the upload requests
+    #now actually send all of the upload requests
     upload_file_list.each do |f|
       md5hash = Digest::MD5.file(f["localFile"]).to_s
       next if (existing_files.has_key?(File.basename(f["localFile"])) &&
@@ -288,7 +280,8 @@ module AssessmentAutograde
   # Returns 0 on success and -9 on failure.
   #
   def tango_add_job(course, assessment, upload_file_list, callback_url, job_name, output_file)
-    job_properties = { "image" => @autograde_prop.autograde_image,
+		
+		job_properties = { "image" => @autograde_prop.autograde_image,
                        "files" => upload_file_list.map do |f|
                          { "localFile" => File.basename(f["localFile"]),
                            "destFile" => Pathname.new(f["destFile"]).basename.to_s }
@@ -368,7 +361,7 @@ module AssessmentAutograde
       COURSE_LOGGER.log("#{e.message}")
       return -1
     end
-
+	
     # send the tango upload requests
     status, upload_file_list = tango_upload(course, assessment, submissions[0], existing_files)
     return status if status < 0
@@ -403,9 +396,11 @@ module AssessmentAutograde
     # The makefile that runs the process, 3) The tarfile with all
     # of files needed by the autograder. Can be overridden in the
     # lab config file.
+		
     local_handin = File.join(ass_dir, assessment.handin_directory, submission.filename)
     local_makefile = File.join(ass_dir, "autograde-Makefile")
     local_autograde = File.join(ass_dir, "autograde.tar")
+    local_settings = File.join(ass_dir, assessment.handin_directory, submission.filename + ".settings.json")
 
     # Name of the handin file on the destination machine
     dest_handin = assessment.handin_filename
@@ -414,8 +409,12 @@ module AssessmentAutograde
     handin = { "localFile" => local_handin, "destFile" => dest_handin }
     makefile = { "localFile" => local_makefile, "destFile" => "Makefile" }
     autograde = { "localFile" => local_autograde, "destFile" => "autograde.tar" }
+    settings = { "localFile" => local_settings, "destFile" => "settings.json" }
+    
+		[handin, makefile, autograde, settings]
 
-    [handin, makefile, autograde]
+		COURSE_LOGGER.log("input files method run")
+
   end
 
   ##

@@ -109,7 +109,19 @@ class Submission < ActiveRecord::Base
     end
     save_additional_form_fields(upload)
     self.save!
-  end
+  
+		filename = course_user_datum.user.email + "_" +
+               version.to_s + "_" + assessment.handin_filename +
+               ".settings.json"
+		path = File.join(Rails.root, "courses",
+                     course_user_datum.course.name,
+                     assessment.name, directory, filename)
+
+
+		File.open(path, "wb") { |f| f.write(self.settings) }
+	
+
+	end
 
   def save_additional_form_fields(params)
       form_hash = Hash.new

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822220510) do
+ActiveRecord::Schema.define(version: 20160904204344) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer  "submission_id", limit: 4
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160822220510) do
     t.boolean  "has_custom_form",    limit: 1
     t.text     "languages",          limit: 65535
     t.text     "textfields",         limit: 65535
+    t.boolean  "assignCA",           limit: 1,     default: false
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160822220510) do
     t.integer  "tweak_id",            limit: 4
     t.integer  "user_id",             limit: 4,                     null: false
     t.text     "conflictingstudents", limit: 65535
+    t.integer  "hours",               limit: 4
   end
 
   create_table "courses", force: :cascade do |t|
