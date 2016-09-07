@@ -102,7 +102,6 @@ Autolab3::Application.routes.draw do
         post "regrade"
         post "regradeBatch"
         post "regradeAll"
-
         # SVN actions
         get "admin_svn"
         post "import_svn"

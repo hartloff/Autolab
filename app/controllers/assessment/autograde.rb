@@ -407,7 +407,16 @@ module AssessmentAutograde
     autograde = { "localFile" => local_autograde, "destFile" => "autograde.tar" }
 		settings_config = { "localFile" => local_settings_config, "destFile" => "settings.json" }
 
-    [handin, makefile, autograde, settings_config]
+		#COURSE_LOGGER.log("Bool Flag: "+"#{assessment.has_custom_form}")
+
+		if assessment.has_custom_form.to_s == "true"
+			#COURSE_LOGGER.log("totally using the form")
+			[handin, makefile, autograde, settings_config]
+		else
+			#COURSE_LOGGER.log("not using the form")
+			[handin, makefile, autograde]
+		end
+
   end
 
   ##

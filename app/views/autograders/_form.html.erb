@@ -12,10 +12,16 @@
   <%= f.check_box :release_score, display_name: "Release Scores?",
     help_text: "Check to release autograded scores to students immediately after autograding (strongly recommended)." %>
 
-  <div>
-	  <%= f.file_field :"Autograde Makefile", action: :upload_my_file %>
-	  <%= f.file_field :"Autograde Tarball", action: :upload_my_file %>
-	  <hr>
+	<div>
+		<%= f.file_field :"Autograde Makefile", action: :upload_my_file %>
+		<% if File.exist?(Rails.root.join('courses',@course.name, @assessment.name, 'autograde-Makefile'))  %>
+			<p>autograde-Makefile already present. Uploading another one will overwrite the current one.</p>
+		<% end %>	
+		<%= f.file_field :"Autograde Tarball", action: :upload_my_file %>
+		<% if File.exist?(Rails.root.join('courses',@course.name, @assessment.name, 'autograde.tar'))  %>
+			<p>autograde.tar already present. Uploading another one will overwrite the current one.</p>
+		<% end %>
+		<hr>
   </div>
 
   <%= f.submit "Save Settings", { class: "btn primary" } %>

@@ -35,6 +35,9 @@ class AutogradersController < ApplicationController
     redirect_to([:edit, @course, @assessment]) && return
   end
 
+	def download_Makefile
+		send_file(File.join(Rails.root, 'courses', @course.name, @assessment.name, 'autograde-Makefile'))
+	end
   def upload_my_file
     uploaded_tar = params[:autograder][:"Autograde Tarball"]
 	  uploaded_makefile = params[:autograder][:"Autograde Makefile"]
